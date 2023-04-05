@@ -19,11 +19,13 @@ export default class School{
   update(){
     this.fish.forEach(el => {
 
-      el.topFlipper +=0.08
+      if(el.yv < -0.8) el.topFlipper +=el.flipperSpeed*el.flipperDirection
 
       if(el.topFlipper > 0.7){
-        el.flipperSetpoint = -0.2
-      } 
+        el.flipperDirection = -1
+      } else if(el.topFlipper < 0.2){
+        el.flipperDirection = 1
+      }
 
       el.applyPhysics()
 

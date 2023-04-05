@@ -10,7 +10,8 @@ export default class Fish{
   ya = 0
   parent:School | undefined
   topFlipper =0
-  flipperSetpoint = 0
+  flipperDirection:1|-1 = 1
+  flipperSpeed = 0.05
   constructor(x:number,y:number,parent?:School) {
     this.x = x
     this.y = y
