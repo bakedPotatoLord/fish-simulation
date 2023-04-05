@@ -16,9 +16,13 @@ export default class Fish{
   }
   
   draw(ctx:CanvasRenderingContext2D){
-    ctx.fillStyle = 'orange'
+    ctx.fillStyle = '#a6a8a0'
     ctx.beginPath()
-    ctx.ellipse(this.x,this.y,10,50,0,0,TAU)
+    ctx.ellipse(this.x,this.y,8,80,0,0,TAU)
+    ctx.fill()
+    ctx.fillStyle = '#353634'
+    ctx.beginPath()
+    ctx.ellipse(this.x,this.y,2,80,0,0,TAU)
     ctx.fill()
   }
 
@@ -35,6 +39,11 @@ export default class Fish{
 
   applyGravity(){
     this.ya += config.gravity;
+  }
+
+  stopSelfX(){
+    this.xv = 0
+    this.xa *= 0.5
   }
 
   applyFriction(){
@@ -69,14 +78,15 @@ export default class Fish{
   avoidOtherFish(){
     if(this.parent == undefined) return;
     const dist = this.parent.getClosestFish(this).distanceTo(this)
-    console.log(dist)
-    if(dist < 50){
+    if(dist < 100){
       if(this.x < this.parent.getClosestFish(this).x){
-        this.pushRight(1/dist * 2)
+        this.pushRight(1/dist * 1)
       }
       if(this.x > this.parent.getClosestFish(this).x){
-        this.pushLeft(1/dist * 2)
+        this.pushLeft(1/dist * 1)
       }
+    }else{
+      this.stopSelfX()
     }
     
   }
