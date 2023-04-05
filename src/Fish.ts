@@ -1,4 +1,5 @@
-import { config, rand, TAU } from "."
+import { config, cw, TAU } from "."
+import School from "./School"
 
 export default class Fish{
   x:number
@@ -7,9 +8,11 @@ export default class Fish{
   yv = 0
   xa = 0
   ya = 0
-  constructor(x:number,y:number) {
+  parent:School
+  constructor(x:number,y:number,parent:School) {
     this.x = x
     this.y = y
+    this.parent = parent
   }
   
   draw(ctx:CanvasRenderingContext2D){
@@ -42,23 +45,43 @@ export default class Fish{
     this.yv  = -1
   }
 
+  distanceTo(to:Fish){
+    return Math.hypot(this.x - to.x,this.y - to.y)
+  }
+
   avoidWall(){
-    if(this.x <= 0){
-      this.pushLeft()
-    }else if(this.x > 400){
-      this.pushRight()
+    if(this.x <= 50){
+      this.xa += 0.1
+    }else if(this.x > 350){
+      this.xa -= 0.1
+    }
+  }
+
+  collideWithWall(){
+    if(this.x <= 10 || this.x >= cw-10){
+      this.xa = 0
+      this.xv = 0
     }
   }
 
   avoidOtherFish(){
+    console.log(this.parent.getClosestFish(this).distanceTo(this))
+    if(this.parent.getClosestFish(this).distanceTo(this) < 200){
+      console.log("fish")
+      if(this.x < this.parent.getClosestFish(this).x){
+        this.pushRight()
+      }else{
+        this.pushLeft()
+      }
+    }
     
   }
 
   pushLeft(){
-    this.xa += 0.3
+    this.xa += 0.01
   }
 
   pushRight(){
-    this.xa -= 0.3
+    this.xa -= 0.01
   }
 }

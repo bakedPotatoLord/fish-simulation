@@ -1,11 +1,10 @@
-import Fish from "./Fish"
 import School from "./School"
 
 const c = <HTMLCanvasElement>document.querySelector('canvas') 
 const ctx = <CanvasRenderingContext2D>c.getContext('2d')
 
-const cw = c.width = 400
-const ch = c.height = 400
+export const cw = c.width = 400
+export const ch = c.height = 400
 
 export const TAU = 2* Math.PI 
 
