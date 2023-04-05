@@ -1,0 +1,23 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "npm run dev",
+      "type": "PowerShell",
+      "request": "launch",
+      "script": "npm run dev",
+      "cwd": "${cwd}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:5173/fish-simulation/",
+      "webRoot": "${workspaceFolder}",
+    },
+
+  ]
+}
