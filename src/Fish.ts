@@ -9,6 +9,8 @@ export default class Fish{
   xa = 0
   ya = 0
   parent:School | undefined
+  topFlipper =0
+  flipperSetpoint = 0
   constructor(x:number,y:number,parent?:School) {
     this.x = x
     this.y = y
@@ -36,6 +38,29 @@ export default class Fish{
     ctx.beginPath()
     ctx.arc(this.x,this.y+70,2,0,TAU)
     ctx.fill()
+
+    
+
+  }
+
+  drawFlippers(ctx:CanvasRenderingContext2D){
+    ctx.fillStyle = '#a6a8a0'
+    ctx.save()
+    ctx.translate(this.x,this.y-65)
+    ctx.rotate(this.topFlipper)
+    ctx.beginPath()
+    ctx.ellipse(20,0,15,10,0,Math.PI/2,-Math.PI/2)
+    ctx.fill()
+    
+    ctx.rotate(-this.topFlipper)
+
+    ctx.scale(-1,1)
+    ctx.rotate(this.topFlipper)
+    ctx.beginPath()
+    ctx.ellipse(20,0,15,10,0,Math.PI/2,-Math.PI/2)
+    ctx.fill()
+
+    ctx.restore()
   }
 
   applyPhysics(){

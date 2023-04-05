@@ -10,11 +10,21 @@ export default class School{
   }
   
   draw(ctx:CanvasRenderingContext2D){
-    this.fish.forEach(el => el.draw(ctx))
+    this.fish.forEach(el =>{ 
+      el.draw(ctx)
+      el.drawFlippers(ctx)
+    })
   }
 
   update(){
     this.fish.forEach(el => {
+
+      el.topFlipper +=0.08
+
+      if(el.topFlipper > 0.7){
+        el.flipperSetpoint = -0.2
+      } 
+
       el.applyPhysics()
 
       el.avoidOtherFish()
