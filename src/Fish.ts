@@ -24,6 +24,18 @@ export default class Fish{
     ctx.beginPath()
     ctx.ellipse(this.x,this.y,2,80,0,0,TAU)
     ctx.fill()
+
+    ctx.fillStyle = '#353634'
+    ctx.beginPath()
+    ctx.moveTo(this.x,this.y+90)
+    ctx.lineTo(this.x+5,this.y+60)
+    ctx.lineTo(this.x-5,this.y+60)
+    ctx.fill()
+
+    ctx.fillStyle = '#000000'
+    ctx.beginPath()
+    ctx.arc(this.x,this.y+70,2,0,TAU)
+    ctx.fill()
   }
 
   applyPhysics(){
@@ -42,8 +54,8 @@ export default class Fish{
   }
 
   stopSelfX(){
-    this.xv = 0
-    this.xa *= 0.5
+    this.xv *= 0.99
+    this.xa *= 0.9
   }
 
   applyFriction(){
