@@ -1,4 +1,4 @@
-import { config, TAU } from "."
+import { config, rand, TAU } from "."
 
 export default class Fish{
   x:number
@@ -38,6 +38,27 @@ export default class Fish{
   }
 
   pushUp(){
-    this.ya -= 0.2
+    this.ya = 0
+    this.yv  = -1
+  }
+
+  avoidWall(){
+    if(this.x <= 0){
+      this.pushLeft()
+    }else if(this.x > 400){
+      this.pushRight()
+    }
+  }
+
+  avoidOtherFish(){
+    
+  }
+
+  pushLeft(){
+    this.xa += 0.3
+  }
+
+  pushRight(){
+    this.xa -= 0.3
   }
 }
