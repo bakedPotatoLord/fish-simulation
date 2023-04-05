@@ -8,8 +8,8 @@ export default class Fish{
   yv = 0
   xa = 0
   ya = 0
-  parent:School
-  constructor(x:number,y:number,parent:School) {
+  parent:School | undefined
+  constructor(x:number,y:number,parent?:School) {
     this.x = x
     this.y = y
     this.parent = parent
@@ -29,6 +29,8 @@ export default class Fish{
     this.yv += this.ya
     this.x += this.xv
     this.y += this.yv
+
+    this.collideWithWall()
   }
 
   applyGravity(){
@@ -65,23 +67,25 @@ export default class Fish{
   }
 
   avoidOtherFish(){
-    console.log(this.parent.getClosestFish(this).distanceTo(this))
-    if(this.parent.getClosestFish(this).distanceTo(this) < 200){
-      console.log("fish")
+    if(this.parent == undefined) return;
+    const dist = this.parent.getClosestFish(this).distanceTo(this)
+    console.log(dist)
+    if(dist < 50){
       if(this.x < this.parent.getClosestFish(this).x){
-        this.pushRight()
-      }else{
-        this.pushLeft()
+        this.pushRight(1/dist * 2)
+      }
+      if(this.x > this.parent.getClosestFish(this).x){
+        this.pushLeft(1/dist * 2)
       }
     }
     
   }
 
-  pushLeft(){
-    this.xa += 0.01
+  pushLeft(amt:number){
+    this.xa += amt
   }
 
-  pushRight(){
-    this.xa -= 0.01
+  pushRight(amt:number){
+    this.xa -= amt
   }
 }

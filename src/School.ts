@@ -29,16 +29,18 @@ export default class School{
   getClosestFish(toLook:Fish){
     return this.fish.reduce(
       (prev,curr)=>{
-        if(
+        if(curr == toLook){
+          return prev
+        }else if(
           Math.hypot(curr.x - toLook.x,curr.y - toLook.y) >
-          Math.hypot(prev.x - toLook.x,prev.y - toLook.y) ||
-          toLook == curr
+          Math.hypot(prev.x - toLook.x,prev.y - toLook.y) 
         ){
           return prev
         }else{
           return curr
         }
-      }
+      },
+      new Fish(-Infinity,-Infinity)
     )
   }
 }
