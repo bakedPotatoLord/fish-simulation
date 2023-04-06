@@ -89,9 +89,9 @@ export default class Fish{
     this.ya *= config.friction
   }
 
-  pushUp(){
+  pushUp(val?:number ){
     this.ya = 0
-    this.yv  = -1
+    this.yv  = val ?? -1
   }
 
   distanceTo(to:Fish){
