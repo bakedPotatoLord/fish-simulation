@@ -33,7 +33,7 @@ export default class School{
       el.avoidWall()
   
       if(el.y > 300){
-        el.pushUp()
+        el.pushUp(-rand(1.5,0.75))
       }
     });
   }
