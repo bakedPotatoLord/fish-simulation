@@ -27,6 +27,10 @@ export default class School{
         el.flipperDirection = 1
       }
 
+      if(Math.random() < 0.01){
+        el.pushLeft(rand(-3.5,3.5))
+      }
+
       el.applyPhysics()
 
       el.avoidOtherFish()
