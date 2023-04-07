@@ -28,7 +28,7 @@ export default class School{
       }
 
       if(Math.random() < 0.01){
-        el.pushLeft(rand(-3.5,3.5))
+        el.pushLeft(rand(-1.5,1.5))
       }
 
       el.applyPhysics()
