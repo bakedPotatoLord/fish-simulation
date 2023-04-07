@@ -40,6 +40,7 @@ export default class Fish{
     ctx.arc(this.x,this.y+70,2,0,TAU)
     ctx.fill()
 
+
     
 
   }
@@ -61,6 +62,22 @@ export default class Fish{
     ctx.ellipse(20,0,15,10,0,Math.PI/2,-Math.PI/2)
     ctx.fill()
 
+    ctx.restore()
+
+    const isMovingLeft = this.xv < 0
+    ctx.beginPath()
+    ctx.moveTo(this.x+ (isMovingLeft ? 8:-8),this.y)
+    ctx.ellipse(
+      this.x+(isMovingLeft ? 8:-8),
+      this.y,
+      5,
+      20,
+      0,
+      (isMovingLeft ? 0:Math.PI),
+      Math.PI/2,
+      !isMovingLeft 
+      )
+    ctx.fill()
     ctx.restore()
   }
 
