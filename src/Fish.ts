@@ -65,13 +65,15 @@ export default class Fish{
     ctx.restore()
 
     const isMovingLeft = this.xv < 0
+    const ismovingSlow = Math.abs(this.xv) < 0.1
+    
     ctx.beginPath()
     ctx.moveTo(this.x+ (isMovingLeft ? 8:-8),this.y)
     ctx.ellipse(
       this.x+(isMovingLeft ? 8:-8),
       this.y,
       5,
-      20,
+      ismovingSlow ? 0: 20,
       0,
       (isMovingLeft ? 0:Math.PI),
       Math.PI/2,
