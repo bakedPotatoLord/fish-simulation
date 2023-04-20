@@ -39,11 +39,12 @@ export default class Fish{
     ctx.beginPath()
     ctx.arc(this.x,this.y+70,2,0,TAU)
     ctx.fill()
-
-
-    
-
   }
+
+  /**
+   * Draws the flippers on a canvas context.
+   * @param {CanvasRenderingContext2D} ctx - The context on which to draw the flippers.
+   */
 
   drawFlippers(ctx:CanvasRenderingContext2D){
     ctx.fillStyle = '#a6a8a0'
@@ -83,15 +84,22 @@ export default class Fish{
     ctx.restore()
   }
 
-  applyPhysics(){
-    this.applyGravity()
-    this.applyFriction()
-    this.xv += this.xa
-    this.yv += this.ya
-    this.x += this.xv
-    this.y += this.yv
-
-    this.collideWithWall()
+  /**
+  * Applies physics to the object's position and velocity
+  */
+  applyPhysics() {
+    // Apply gravity to the y velocity
+    this.applyGravity();
+    // Apply friction to the x and y velocities
+    this.applyFriction();
+    // Update the x and y velocities based on the acceleration
+    this.xv += this.xa;
+    this.yv += this.ya;
+    // Update the x and y position based on the velocity
+    this.x += this.xv;
+    this.y += this.yv;
+    // Collide with any walls in the scene
+    this.collideWithWall();
   }
 
   applyGravity(){
@@ -113,7 +121,13 @@ export default class Fish{
     this.yv  = val ?? -1
   }
 
-  distanceTo(to:Fish){
+  /**
+  * Calculates the distance between this fish and another fish.
+  * @param {Fish} to - The fish to calculate the distance to.
+  * @returns {number} The distance between the two fish.
+  */
+
+  distanceTo(to:Fish): number{
     return Math.hypot(this.x - to.x,this.y - to.y)
   }
 
@@ -131,6 +145,10 @@ export default class Fish{
       this.xv = 0
     }
   }
+  /**
+ * Moves the current fish away from other fish within 100 pixels.
+ * If no other fish are nearby, stops horizontal movement.
+ */
 
   avoidOtherFish(){
     if(this.parent == undefined) return;

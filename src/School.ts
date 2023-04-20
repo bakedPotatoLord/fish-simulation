@@ -15,7 +15,23 @@ export default class School{
       el.drawFlippers(ctx)
     })
   }
-
+  /**
+   * This function updates the properties of each fish in the
+   *  "fish" array. It first checks if the fish's "yv" property
+   *  is less than -0.8, and if so, it updates the fish's
+   *  "topFlipper" property based on the fish's "flipperSpeed"
+   *  and "flipperDirection" properties. Then, it checks if the
+   *  fish's "topFlipper" property is greater than 0.7, and if
+   *  so, it sets the fish's "flipperDirection" property to -1.
+   *  If the "topFlipper" property is less than 0.2, it sets the
+   *  "flipperDirection" property to 1. Next, there is a 1%
+   *  chance that the fish will be pushed to the left with a
+   *  random value between -1.5 and 1.5. The function then
+   *  applies physics to the fish, causes it to avoid other fish
+   *  and walls, and finally, if the fish's "y" property is
+   *  greater than 300, it pushes the fish up with a random
+   *  value between -1.5 and -0.75.
+   */
   update(){
     this.fish.forEach(el => {
 
